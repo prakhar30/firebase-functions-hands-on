@@ -8,6 +8,10 @@
 	- POST method
 	- Body in the form of - {"alarmEngaged": true/false}
 	- Response like - {alarmEngaged - true/false}
+3. https://us-central1-teravalve-90327.cloudfunctions.net/uploadToken
+	- POST method
+	- Body - {"token": "your-token"}
+	- Saves the device token in the DB 
 
 	
 ## Commands in chronological order of their use
