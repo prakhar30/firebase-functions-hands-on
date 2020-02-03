@@ -19,6 +19,7 @@ exports.updateStatus = functions.https.onRequest((req, res) => {
     }
 
     console.log(req.body);
+    sendNotification();
 
     return res.status(200).json({
       received: req.body.alarmEngaged
@@ -59,3 +60,27 @@ function getTokens() {
 //   .catch(error => {
 //     console.log(error);
 //   });
+
+function sendNotification() {
+  getTokens()
+    .then(items => {
+      const message = {
+        notification: { title: "Hello", body: "I am here" },
+        tokens: items
+      };
+      admin
+        .messaging()
+        .sendMulticast(message)
+        .then(response => {
+          console.log(response);
+          return response;
+        })
+        .catch(error => {
+          console.log("two", error);
+        });
+      return items;
+    })
+    .catch(error => {
+      console.log("one ", error);
+    });
+}
