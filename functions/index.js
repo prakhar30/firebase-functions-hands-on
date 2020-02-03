@@ -41,3 +41,21 @@ exports.uploadToken = functions.https.onRequest((req, res) => {
     });
   });
 });
+
+function getTokens() {
+  let items = [];
+  return new Promise(resolve => {
+    database.on("value", function(snapshot) {
+      snapshot.forEach(function(childSnapshot) {
+        var childData = childSnapshot.val();
+        items.push(childData.token);
+      });
+      return resolve(items);
+    });
+  });
+}
+// getTokens()
+//   .then(items => console.log("Items", items))
+//   .catch(error => {
+//     console.log(error);
+//   });
