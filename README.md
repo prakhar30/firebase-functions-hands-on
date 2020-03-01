@@ -1,4 +1,4 @@
-# TeraValve Serverless
+# Firebase functions hands-on
 
 
 ## Endpoints created 
